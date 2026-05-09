@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Alexandre Azul - Quarteira, Portugal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ocean-blue: #1B5A7A;
+            --light-cream: #F5F1E8;
+            --dark-text: #2C2C2A;
+            --sand: #D4C5B9;
+            --white: #FFFFFF;
+            --light-gray: #F9F7F3;
+        }
+
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            color: var(--dark-text);
+            line-height: 1.7;
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--ocean-blue);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--ocean-blue);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--ocean-blue) 0%, #0F3B52 100%);
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(27, 90, 122, 0.3);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: var(--white);
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: var(--light-cream);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 2.5rem;
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--ocean-blue);
+            text-decoration: none;
+            letter-spacing: 1px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid var(--white);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--white);
+        }
+
+        /* Welcome Section */
+        .welcome {
+            padding: 6rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+        }
+
+        .welcome h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--ocean-blue);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .welcome p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            color: var(--dark-text);
+        }
+
+        /* Highlights */
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            padding: 4rem 2rem;
+            background: var(--light-gray);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .highlight-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .highlight-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--ocean-blue);
+            font-weight: 500;
+        }
+
+        .highlight-item p {
+            font-size: 0.95rem;
+            color: var(--dark-text);
+            line-height: 1.8;
+        }
+
+        /* Local Flavour Section */
+        .local-flavour {
+            padding: 5rem 2rem;
+            background: var(--white);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .local-flavour h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--ocean-blue);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .local-flavour h3 {
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+
+        .local-flavour p {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.9;
+            color: var(--dark-text);
+        }
+
+        .local-flavour ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .local-flavour li {
+            padding: 0.8rem 0 0.8rem 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .local-flavour li:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 1.2rem;
+            width: 5px;
+            height: 5px;
+            background: var(--ocean-blue);
+            border-radius: 50%;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--ocean-blue);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button-dark {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--ocean-blue);
+            text-decoration: none;
+            letter-spacing: 1px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-button-dark:hover {
+            background: var(--sand);
+            color: var(--ocean-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-text);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--sand);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--white);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .hero {
+                margin-top: 120px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .welcome h2,
+            .local-flavour h2,
+            .cta-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">Casa Alexandre Azul</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=1000&fit=crop" alt="Quarteira Beach" class="hero-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Casa Alexandre Azul</h1>
+            <p class="subtitle">A calm coastal stay, steps from the sea</p>
+            <a href="gallery.html" class="cta-button">Explore</a>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome">
+        <h2>Welcome</h2>
+        <p>Welcome to Casa Alexandre Azul, a relaxed coastal apartment in the heart of Quarteira, just a short walk from Praia de Quarteira.</p>
+        
+        <p>Recently renovated, the apartment is designed for comfortable, longer stays. With two bedrooms and two bathrooms, it accommodates up to four guests and offers a bright, open living space, a private balcony with a glimpse of the ocean, and everything needed to settle in with ease.</p>
+        
+        <p>Air conditioning, fast WiFi, a fully equipped kitchen, and in-apartment laundry are all in place. Whether you're here to unwind, work remotely, or a bit of both.</p>
+        
+        <p>The Location</p>
+        
+        <p>Casa Alexandre Azul sits between the laid-back rhythm of Quarteira and the energy of Vilamoura Marina, just a 15-minute walk along the coastline. The beach is only 5 minutes away, and just outside your door you'll find a variety of local cafes, restaurants, and bakeries. Everything you need within easy walking distance.</p>
+    </section>
+
+    <!-- Highlights -->
+    <section class="highlights">
+        <div class="highlight-item">
+            <div class="highlight-icon">🌊</div>
+            <h3>5 Minutes to Beach</h3>
+            <p>Praia de Quarteira is a short walk away. Perfect for morning swims and sunset strolls.</p>
+        </div>
+        <div class="highlight-item">
+            <div class="highlight-icon">🏠</div>
+            <h3>Fully Equipped</h3>
+            <p>Modern kitchen, fast WiFi, air conditioning, and in-apartment laundry for complete comfort.</p>
+        </div>
+        <div class="highlight-item">
+            <div class="highlight-icon">👥</div>
+            <h3>Sleeps 4</h3>
+            <p>Two bedrooms, two bathrooms. Plenty of space for families, friends, or solo travelers.</p>
+        </div>
+        <div class="highlight-item">
+            <div class="highlight-icon">🌅</div>
+            <h3>Ocean Views</h3>
+            <p>Private balcony with glimpses of the sea. Wake up to the sound of waves and coastal light.</p>
+        </div>
+    </section>
+
+    <!-- Local Flavour -->
+    <section class="local-flavour">
+        <h2>A Simple Ritual</h2>
+        <p>In the late afternoon, take a walk along the promenade by Praia de Quarteira as the light softens and the day begins to slow. Stop for a coffee, a cold beer, or a glass of wine by the sea, and follow the coastline toward Vilamoura Marina. It's a simple routine but one that quickly becomes part of daily life here.</p>
+        
+        <p>We hope you enjoy the slower pace, the sea air, and your time at Casa Alexandre Azul.</p>
+
+        <h3>Local Favourites</h3>
+        
+        <h3>Morning</h3>
+        <p>Start your day slowly with fresh bread and coffee from O Pao do Povo, just steps from the apartment. For something a little different, visit Boba Cha Cafe, a relaxed local spot run by Canadians and a personal favourite.</p>
+
+        <h3>Lunch and Casual Dining</h3>
+        <ul>
+            <li>Tico Tico - classic seafood right on the beach</li>
+            <li>Taberna do Peixe - simple, authentic, and well-loved</li>
+            <li>Ca da Terra - relaxed atmosphere with great food</li>
+        </ul>
+
+        <h3>Afternoon and Sunset</h3>
+        <p>Walk the promenade along Praia de Quarteira toward Vilamoura Marina as the afternoon light softens. Along the way, you'll find plenty of small cafes and casual spots to stop for a drink by the sea, or simply enjoy the walk and see where it takes you.</p>
+
+        <h3>Living Here</h3>
+        <p>Quarteira has a slower, more local rhythm than nearby Vilamoura Marina. It's the kind of place where routines come naturally: morning coffee, time by the water, and evenings that unfold without much planning. One of the best parts of staying here is how easily you can move between the two at your own pace on foot.</p>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Experience Portugal?</h2>
+        <p>Reach out to Cecilia for availability and to arrange your stay at Casa Alexandre Azul.</p>
+        <a href="contact.html" class="cta-button-dark">Get in Touch</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Casa Alexandre Azul</p>
+        <p>Quarteira, Portugal</p>
+        <p>Email: <a href="mailto:ceciliaalexandre@rogers.com">ceciliaalexandre@rogers.com</a></p>
+        <p style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">Built with care for a dream realized</p>
+    </footer>
+</body>
+</html>
